@@ -4,7 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -25,22 +28,32 @@ public class UserController {
 	@Autowired
 	UserDetails userDetails;
 	
+	
 	@RequestMapping("/login")
+	public String loginPage(Model m)
+	{
+		m.addAttribute("login", userDetailsDAO.list());
+		return "login";
+	}
+	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value = "id" ) String id , 
-			@RequestParam(value ="password") String password , HttpSession session)
+			@RequestParam(value ="password") String password , HttpSession session,@ModelAttribute("login") UserDetails userDetails)
 	{
 	ModelAndView mv = new ModelAndView("home");
-	String msg ;
+	String msg="" ;
 	userDetails = userDetailsDAO.isValidUser(id, password);
 	if(userDetails == null) {
 		msg = "Invalid User ...please try again";
 	}
 	else{
 		
-		if (userDetails.getRole().equals("Role_Admin")){
+		if (userDetails.getRole().equals("ROLE_ADMIN")){
 			mv = new ModelAndView("adminHome");
 		}
-
+		else
+		{
+			mv=new ModelAndView("index");
+		}
 			session.setAttribute("welcomemsg", userDetails.getName());
 			session.setAttribute("userID", userDetails.getId());
 			

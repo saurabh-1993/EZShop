@@ -5,13 +5,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
     <%@ include file="header.jsp" %>
-   	<div id="loginHere">
-				<c:if test="${isUserClickedLoginHere==true || invalidCredentials==true}">
-				  <div id = "error">  ${errorMessage} </div>
-					<%@ include file="login.jsp"%>
-
-				</c:if>
-			</div>
+   	
    
   <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -392,4 +386,21 @@
 </div>
 </div>
 </div>
+
+
+				
+			<div id="loginHere">
+				<c:if test="${isUserClickedLoginHere==true || invalidCredentials==true}">
+				  <div id = "error">  ${errorMessage} </div>
+					<%@ include file="login.jsp"%>
+
+				</c:if>
+			</div>
+
+			<!-- ---------- --admin----------->
+		
+
+			
+			
+			
 <%@ include file="footer.jsp" %>

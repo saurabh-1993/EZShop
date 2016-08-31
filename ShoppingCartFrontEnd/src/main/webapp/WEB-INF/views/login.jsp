@@ -6,36 +6,96 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
+  <title>Online Shopping</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css">
 
-<title>Shopping chart</title>
+
+
+
+<script src="http://mymaplist.com/js/vendor/TweenLite.min.js"></script>
 </head>
 <body>
+    <%@ include file="header.jsp" %>
+    <br>
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
 
-	Please login with your credentials
-	<br> ${message}
 	<c:url var="action" value="/login"></c:url>
 
-	<form:form action="${action}" method="post">
-		<table>
-			<tr>
-				<td>User Name:</td>
-				<td><input type="text" name="name"></td>
-			</tr>
+<div class="container">
+    <div class="row vertical-offset-100">
+        <div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">Please sign in</h3>
+			 	</div>
+			  	<div class="panel-body">
+	<form:form action="${action}" method="post" commandName="login">
+			
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="Username" name="id" type="text">
+			    		</div>
+			    		<div class="form-group">
+			    			<input class="form-control" placeholder="Password" name="password" type="password" value="">
+			    		</div>
+			 
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+			    	</fieldset>
+			      		</form:form>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
 
-			<tr>
-				<td>Password:</td>
-				<td><input type="password" name="password" /></td>
-			</tr>
-			<tr>
-				<td><input type="submit" value="Login"></td>
-			</tr>
 
-		</table>
+    <br>
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
+	    <br>
+	
 
 
-
-	</form:form>
-
-
+<%@ include file="footer.jsp" %>
 </body>
 </html>

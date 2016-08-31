@@ -2,6 +2,8 @@ package com.niit.shoppingcart.controller;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,20 +24,25 @@ public class SupplierController {
 	private SupplierDAO supplierDAO;
 	@Autowired
 	public Supplier supplier;
+	Logger log = LoggerFactory.getLogger(CategoryController.class);
 
-	@RequestMapping(value="/supplier",method=RequestMethod.GET)
-	public String addSupplier(ModelMap model)
+	@RequestMapping(value="/addSupplier",method=RequestMethod.GET)
+	public String listSupplier(Model model)
 	{
+		log.debug("Starting of the method listSupplier");
 		List<Supplier> list=supplierDAO.list();
 		model.addAttribute("suppliers", list);
+		model.addAttribute("supplier", supplier);
+		log.debug("Ending of the method listSupplier");
 		return "addSupplier";
 	}
 	
 	@RequestMapping(value="/newSupplier",method=RequestMethod.POST)
-	public String newSupplier(@ModelAttribute("supplier") Supplier supplier,ModelMap model)
+	public String addSupplier(@ModelAttribute("supplier") Supplier supplier)
 	{
+		log.debug("Starting of the method addSupplier");
 		supplierDAO.save(supplier);
-		
+		log.debug("Ending of the method addSupplier");
 		return "addSupplier";
 	}
 	
@@ -59,14 +66,18 @@ public class SupplierController {
 	@RequestMapping(value="/editSupplier/{id}",method=RequestMethod.POST)
 	public String editSupplier(@PathVariable("id") String id,Model model,Supplier supplier)
 	{
+		log.debug("starting of the method editSupplier");
 		supplierDAO.update(supplier);
+		log.debug("Ending of the method editSupplier");
 		return "redirect:/addSupplier";
 	}
 	
 	@RequestMapping(value="/deleteSupplier")
 	public String deleteSupplier(@ModelAttribute("id") String id,Model model,Supplier supplier)
 	{
+		log.debug("Starting of the method deleteSupplier");
 	     supplierDAO.delete(supplier);
+	     log.debug("Ending of the method deleteSupplier");
 		return "redirect:/addSupplier";
 	}
 

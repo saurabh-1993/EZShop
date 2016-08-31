@@ -55,7 +55,7 @@ public class ProductController {
 		return "editProduct";
 	}
 	
-	
+	@ModelAttribute("editP")
 	@RequestMapping(value="/editProduct/{id}",method=RequestMethod.POST)
 	public String editProduct(@PathVariable("id") String id,@ModelAttribute("editP") Product product ,Model model)
 	{

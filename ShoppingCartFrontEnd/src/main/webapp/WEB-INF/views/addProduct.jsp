@@ -51,7 +51,7 @@
 <td>${product.name}</td>
 <td>${product.description}</td>
 <td>${product.price}</td>
-<td align="center"><a href="<spring:url="/editProduct?id=${product.id}"/>" class ="btn btn-primary">Edit</a> | <a href="deleteProduct?id=${product.id}" class ="btn btn-warning">Delete</a></td>
+<td align="center"><a href="/editProduct?id=${product.id}"class ="btn btn-primary">Edit</a> | <a href="deleteProduct?id=${product.id}" class ="btn btn-warning">Delete</a></td>
 </tr>
 
 </c:forEach>
