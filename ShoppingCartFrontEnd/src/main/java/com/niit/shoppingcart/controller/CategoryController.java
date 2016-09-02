@@ -31,27 +31,30 @@ public class CategoryController {
 	@RequestMapping(value="/addCategory",method=RequestMethod.GET)
 	public String listCategory(Model model)
 	{ 
+		
 		log.debug("Starting of the method listCategory");
 		List<Category> list=categoryDAO.list();
 		
 		model.addAttribute("categorys", list);
 		log.debug("Ending of the method listCategory");
+		
 		return "addCategory";
 		
 	}
 	
 	@RequestMapping(value="/newCategory",method=RequestMethod.POST)
-	public String addCategory(@ModelAttribute("category") Category category)
+	public String addCategory(@ModelAttribute("category")  Category category)
 	{
-		
 
 		log.debug("Starting of the method addCategory");
 
+	
+
 		categoryDAO.save(category);
-		
-		
+
+
 		log.debug("Ending of the method addCategory");
-		return "addCategory";
+	    return "redirect:categoryTable";
 	}
 	
 	
@@ -64,14 +67,14 @@ public class CategoryController {
 		return "editCategory";
 	}
 	
-	@ModelAttribute("editP")
+	 @ModelAttribute("editP")
 	@RequestMapping(value="/editCategory/{id}",method=RequestMethod.POST)
-	public String editCategory(@PathVariable("id") String id , Category category)
+	public String editCategory(@PathVariable("id") String id ,Category category)
 	{
 		log.debug("Starting of the method editCategory");
 		categoryDAO.update(category);
 		log.debug("Ending of the method editCategory");
-		return "redirect:/addCategory";
+		return "redirect:categoryTable";
 	}
 	
 	@RequestMapping(value="/deleteCategory")
@@ -80,7 +83,17 @@ public class CategoryController {
 		log.debug("Starting of the method deleteCategory");
 	     categoryDAO.delete(category);
 	     log.debug("Ending of the method deleteCategory");
-		return "redirect:/addCategory";
+		return "redirect:categoryTable";
 	}
-
+   @RequestMapping(value = "/categoryTable",method=RequestMethod.GET)
+	public String categoryTable(ModelMap model)
+	{ 
+		log.debug("Starting of the method listCategory");
+		List<Category> list=categoryDAO.list();
+		
+		model.addAttribute("categorys", list);
+		log.debug("Ending of the method listCategory");
+		return "categoryTable";
+		
+	}
 }

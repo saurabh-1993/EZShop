@@ -85,7 +85,7 @@
 <li><a id ="su" href = "#">All Products</a></li>
 </ul>
 <ul class="nav navbar-nav navbar-right">
-<li><a id ="su" href = "user/register"><span class="glyphicon glyphicon-user" id ="sug"></span>Sign Up</a></li>
+<li><a id ="su" href = "addUserDetails"><span class="glyphicon glyphicon-user" id ="sug"></span>Sign Up</a></li>
 <li ><a id ="log" href="login"><span class= "glyphicon glyphicon-log-in" id="l"></span>Login</a></li>
 </ul>
 <br>

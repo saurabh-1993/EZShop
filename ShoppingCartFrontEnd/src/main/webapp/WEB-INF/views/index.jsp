@@ -16,7 +16,7 @@
       margin: auto;
   }
   </style>
-
+${msg }<br>
 <br>
 <br>
 <br>

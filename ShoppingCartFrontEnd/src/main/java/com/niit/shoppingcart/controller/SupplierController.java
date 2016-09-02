@@ -43,7 +43,7 @@ public class SupplierController {
 		log.debug("Starting of the method addSupplier");
 		supplierDAO.save(supplier);
 		log.debug("Ending of the method addSupplier");
-		return "addSupplier";
+		return "redirect:supplierTable";
 	}
 	
 	@RequestMapping(value="/suppliers")
@@ -69,7 +69,7 @@ public class SupplierController {
 		log.debug("starting of the method editSupplier");
 		supplierDAO.update(supplier);
 		log.debug("Ending of the method editSupplier");
-		return "redirect:/addSupplier";
+		return "redirect:supplierTable";
 	}
 	
 	@RequestMapping(value="/deleteSupplier")
@@ -78,7 +78,14 @@ public class SupplierController {
 		log.debug("Starting of the method deleteSupplier");
 	     supplierDAO.delete(supplier);
 	     log.debug("Ending of the method deleteSupplier");
-		return "redirect:/addSupplier";
+		return "redirect:supplierTable";
 	}
-
+  
+	@RequestMapping(value ="/supplierTable", method = RequestMethod.GET)
+	public String supplierTable(Model model){
+		log.debug("Start of the method supplierTable");
+		model.addAttribute("suppliers",supplierDAO.list());
+		log.debug("End of the method supplierTable");
+		return "supplierTable";
+	}
 }

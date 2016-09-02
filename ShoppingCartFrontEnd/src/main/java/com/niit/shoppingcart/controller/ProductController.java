@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
+import com.niit.shoppingcart.dao.SupplierDAO;
+import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
+import com.niit.shoppingcart.model.Supplier;
 
 @Controller
 public class ProductController {
@@ -23,10 +27,27 @@ public class ProductController {
 	@Autowired
 	public Product product;
 
+	@Autowired
+	private Category category;
+	
+	@Autowired
+	private CategoryDAO categoryDAO;
+	
+	
+	@Autowired
+	private SupplierDAO supplierDAO;
+	
+    @Autowired	
+	private Supplier supplier;
+	
+	
+	
 	@RequestMapping(value="/addProduct",method=RequestMethod.GET)
 	public String addProduct(ModelMap model)
 	{
 		List<Product> list=productDAO.list();
+		model.addAttribute("suppliers", supplierDAO.list());
+		model.addAttribute("categorys",categoryDAO.list());
 		model.addAttribute("products", list);
 		return "addProduct";
 	}
@@ -34,6 +55,15 @@ public class ProductController {
 	@RequestMapping(value="/newProduct",method=RequestMethod.POST)
 	public String newProduct(@ModelAttribute("product") Product product,ModelMap model)
 	{
+		category = categoryDAO.get(product.getCategory().getId());
+		categoryDAO.save(category);
+		supplier = supplierDAO.get(product.getSupplier().getId());
+		supplierDAO.save(supplier);
+		 
+		product.setCategory(category);
+		product.setSupplier(supplier);
+		product.setCategory_id(category.getId());
+		product.setSupplier_id(supplier.getId());
 		productDAO.save(product);
 		
 		return "addProduct";

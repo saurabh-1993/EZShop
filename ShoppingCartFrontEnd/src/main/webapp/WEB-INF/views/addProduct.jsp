@@ -1,7 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <head>
-  <title>Bootstrap Example</title>
+  <title>Admin</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -31,6 +31,14 @@
 				<td><input type="number" name="price"/></td>
 			</tr>
 			<tr>
+				<td>Category ID:</td>
+				<td><input type="number" name="price"/></td>
+			</tr>
+			<tr>
+				<td>Supplier ID :</td>
+				<td><input type="number" name="price"/></td>
+			</tr>
+			<tr>
 				<td></td>
 				<td><input type="submit" value="Add Product"/></td>
 			</tr>
@@ -44,6 +52,8 @@
 <th>Product Name</th>
 <th>Product Description</th>
 <th>Product Price</th>
+<th>Category ID</th>
+<th>Supplier ID</th>
 </tr>
 <c:forEach var="product" items="${products}">
 <tr>
@@ -51,6 +61,8 @@
 <td>${product.name}</td>
 <td>${product.description}</td>
 <td>${product.price}</td>
+<td>${product.category.category_id}</td>
+<td>${product.supplier.supplier_id}</td>
 <td align="center"><a href="/editProduct?id=${product.id}"class ="btn btn-primary">Edit</a> | <a href="deleteProduct?id=${product.id}" class ="btn btn-warning">Delete</a></td>
 </tr>
 
