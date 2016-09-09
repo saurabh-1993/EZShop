@@ -1,16 +1,10 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<head>
-  <title>Admin</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-<div>
 
-	<form:form action="newProduct" method="POST" commandName="product">
+<%@ include file="header.jsp" %>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
+
+	<form:form action="newProduct" method="POST" commandName="product" enctype="multipart/form-data">
 	
 	
 		<table>
@@ -31,12 +25,17 @@
 				<td><input type="number" name="price"/></td>
 			</tr>
 			<tr>
-				<td>Category ID:</td>
-				<td><input type="number" name="price"/></td>
+				<td>Product Image :</td>
+				<td><input type="file" name="image"/></td>
 			</tr>
 			<tr>
-				<td>Supplier ID :</td>
-				<td><input type="number" name="price"/></td>
+				<td>Category:</td>
+				<td><form:select path="category.name" items ="${categorys}" itemValue ="name" itemLabel ="name"></form:select>
+			
+			</tr>
+			<tr>
+				<td>Supplier:</td>
+				<td><form:select path="supplier.name" items ="${suppliers}" itemValue ="name" itemLabel ="name"></form:select>
 			</tr>
 			<tr>
 				<td></td>
@@ -44,31 +43,6 @@
 			</tr>
 		</table>
 	</form:form>
+	<br><<br><br><br><br><br><br><br><br><br><br><br>
+	<%@ include file="footer.jsp" %>
 	
-<div class ="container">
-<table class ="table table-bordered">
-<tr>
-<th>Product ID</th>
-<th>Product Name</th>
-<th>Product Description</th>
-<th>Product Price</th>
-<th>Category ID</th>
-<th>Supplier ID</th>
-</tr>
-<c:forEach var="product" items="${products}">
-<tr>
-<td>${product.id}</td>
-<td>${product.name}</td>
-<td>${product.description}</td>
-<td>${product.price}</td>
-<td>${product.category.category_id}</td>
-<td>${product.supplier.supplier_id}</td>
-<td align="center"><a href="/editProduct?id=${product.id}"class ="btn btn-primary">Edit</a> | <a href="deleteProduct?id=${product.id}" class ="btn btn-warning">Delete</a></td>
-</tr>
-
-</c:forEach>
-
-</table>
-</div>
-
-</div>

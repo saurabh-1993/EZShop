@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.ProductDAO;
@@ -18,6 +19,7 @@ import com.niit.shoppingcart.dao.SupplierDAO;
 import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
+import com.niit.shoppingcart.util.FileUtil;
 
 @Controller
 public class ProductController {
@@ -40,7 +42,7 @@ public class ProductController {
     @Autowired	
 	private Supplier supplier;
 	
-	
+	String path="C:\\NIIT\\Bootstrap\\images";
 	
 	@RequestMapping(value="/addProduct",method=RequestMethod.GET)
 	public String addProduct(ModelMap model)
@@ -53,20 +55,21 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/newProduct",method=RequestMethod.POST)
-	public String newProduct(@ModelAttribute("product") Product product,ModelMap model)
+	public String newProduct(@ModelAttribute("product") Product product,ModelMap model,@RequestParam("image") MultipartFile file)
 	{
-		category = categoryDAO.get(product.getCategory().getId());
-		categoryDAO.save(category);
-		supplier = supplierDAO.get(product.getSupplier().getId());
-		supplierDAO.save(supplier);
+		category = categoryDAO.getByName(product.getCategory().getName());
+		//categoryDAO.save(category);
+		supplier = supplierDAO.getByName(product.getSupplier().getName());
+		//supplierDAO.save(supplier);
 		 
 		product.setCategory(category);
 		product.setSupplier(supplier);
 		product.setCategory_id(category.getId());
 		product.setSupplier_id(supplier.getId());
+		FileUtil.upload(path, file, product.getId()+".png");
 		productDAO.save(product);
 		
-		return "addProduct";
+		return  "redirect:productTable";
 	}
 	
 	@RequestMapping(value="/products")
@@ -90,14 +93,25 @@ public class ProductController {
 	public String editProduct(@PathVariable("id") String id,@ModelAttribute("editP") Product product ,Model model)
 	{
 		productDAO.update(product);
-		return "redirect:/addProduct";
+		return "redirect:productTable";
 	}
 	
 	@RequestMapping(value="/deleteProduct")
 	public String deleteProduct(@ModelAttribute("id") String id,Model model,Product product)
 	{
 	     productDAO.delete(product);
-		return "redirect:/addProduct";
+		return "redirect:productTable";
 	}
+	   @RequestMapping(value = "/productTable",method=RequestMethod.GET)
+		public String categoryTable(ModelMap model)
+		{ 
+
+		   List<Product> list=productDAO.list();
+			model.addAttribute("suppliers", supplierDAO.list());
+			model.addAttribute("categorys",categoryDAO.list());
+			model.addAttribute("products", list);
+			return "productTable";
+			
+		}
 
 }

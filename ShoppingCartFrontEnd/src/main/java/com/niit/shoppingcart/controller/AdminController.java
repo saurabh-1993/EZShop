@@ -43,6 +43,8 @@ public class AdminController {
 		mv.addObject("product", product);
 		mv.addObject("isAdminClickedProducts", "true");
 		mv.addObject("products", productDAO.list());
+		mv.addObject("categorys", categoryDAO.list());
+		mv.addObject("suppliers", supplierDAO.list());
 		return mv;
 	}
 	@RequestMapping("/manageSuppliers")

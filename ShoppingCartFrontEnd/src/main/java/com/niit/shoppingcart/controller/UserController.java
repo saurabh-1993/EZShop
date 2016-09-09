@@ -1,7 +1,10 @@
 package com.niit.shoppingcart.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.niit.shoppingcart.dao.CategoryDAO;
 import com.niit.shoppingcart.dao.UserDetailsDAO;
+import com.niit.shoppingcart.model.Category;
 import com.niit.shoppingcart.model.UserDetails;
 
 @Controller
 public class UserController {
-	
+	Logger log = LoggerFactory.getLogger(UserController.class);
 	// when the user click login
 	//based on the credentials , i have to find whether he is admin or not '
 	// if he is admin i want to navigate to adminHome page
@@ -27,6 +32,10 @@ public class UserController {
 	
 	@Autowired
 	UserDetails userDetails;
+	@Autowired
+	Category category;
+	@Autowired
+	CategoryDAO categoryDAO;
 	
 	
 	@RequestMapping("/login")
