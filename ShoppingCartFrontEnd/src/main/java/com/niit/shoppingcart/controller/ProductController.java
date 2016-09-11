@@ -1,7 +1,14 @@
 package com.niit.shoppingcart.controller;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,12 +48,16 @@ public class ProductController {
 	
     @Autowired	
 	private Supplier supplier;
+    Logger log = LoggerFactory.getLogger(ProductController.class);
 	
-	String path="C:\\NIIT\\Bootstrap\\images";
+    
+    Path path ;
+    
 	
 	@RequestMapping(value="/addProduct",method=RequestMethod.GET)
 	public String addProduct(ModelMap model)
 	{
+		
 		List<Product> list=productDAO.list();
 		model.addAttribute("suppliers", supplierDAO.list());
 		model.addAttribute("categorys",categoryDAO.list());
@@ -55,7 +66,7 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="/newProduct",method=RequestMethod.POST)
-	public String newProduct(@ModelAttribute("product") Product product,ModelMap model,@RequestParam("image") MultipartFile file)
+	public String newProduct(@ModelAttribute("product") Product product,ModelMap model,HttpServletRequest request)
 	{
 		category = categoryDAO.getByName(product.getCategory().getName());
 		//categoryDAO.save(category);
@@ -66,9 +77,23 @@ public class ProductController {
 		product.setSupplier(supplier);
 		product.setCategory_id(category.getId());
 		product.setSupplier_id(supplier.getId());
-		FileUtil.upload(path, file, product.getId()+".png");
+	 
 		productDAO.save(product);
-		
+		 MultipartFile image = product.getImage();
+		 String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		 path = Paths.get(rootDirectory+"/resources/images/products/"+product.getId()+".png");
+		 log.debug(path.toString());
+		 System.out.println(path);
+		 if(image!= null && !image.isEmpty()){
+			 try{
+				 image.transferTo(new File(path.toString()));
+			 }
+			 catch(Exception e){
+				 e.printStackTrace();
+				 
+			 }
+		 }
+		 
 		return  "redirect:productTable";
 	}
 	
