@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="resources/css/style.css">
 </head>
 
-    <%@ include file="header.jsp" %>
+    <%@ include file="adminHome.jsp" %>
 
    <br>
       <br>  
@@ -34,7 +34,7 @@
       <br>
    
    
-	<form:form action="newCategory" method="POST" commandName="category">
+	<form:form action="${pageContext.request.contextPath}/newCategory" method="POST" commandName="category">
 	
 	
 		<table>

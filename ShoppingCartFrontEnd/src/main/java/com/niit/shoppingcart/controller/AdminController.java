@@ -13,6 +13,7 @@ import com.niit.shoppingcart.model.Product;
 import com.niit.shoppingcart.model.Supplier;
 
 @Controller
+
 public class AdminController {
 	
 	@Autowired
@@ -28,8 +29,11 @@ public class AdminController {
 	@Autowired
 	private SupplierDAO supplierDAO;
 	
-	
-	@RequestMapping("/manageCategories")
+	@RequestMapping("/adminHome")
+	public String admin(){
+		return "adminHome";
+	}
+	@RequestMapping("/adminHome//manageCategories")
 	public ModelAndView categories(){
 		ModelAndView mv = new ModelAndView("/addCategory");
 		mv.addObject("category", category);
@@ -37,7 +41,7 @@ public class AdminController {
 		mv.addObject("categorys", categoryDAO.list());
 		return mv;
 	}
-	@RequestMapping("/manageProducts")
+	@RequestMapping("/adminHome//manageProducts")
 	public ModelAndView products(){
 		ModelAndView mv = new ModelAndView("/addProduct");
 		mv.addObject("product", product);
@@ -47,7 +51,7 @@ public class AdminController {
 		mv.addObject("suppliers", supplierDAO.list());
 		return mv;
 	}
-	@RequestMapping("/manageSuppliers")
+	@RequestMapping("/adminHome//manageSuppliers")
 	public ModelAndView suppliers(){
 		ModelAndView mv = new ModelAndView("/addSupplier");
 		mv.addObject("supplier", supplier);

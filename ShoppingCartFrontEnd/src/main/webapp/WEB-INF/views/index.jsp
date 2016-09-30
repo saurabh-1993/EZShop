@@ -4,7 +4,127 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-    <%@ include file="header.jsp" %>
+<%@ include file="header.jsp" %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container-fluid">
+  <br>
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+
+      <div class="item active">
+        <img src="resources/images/mob.jpg" alt="mobile" class ="center-block">
+       
+          
+        </div>
+ 
+
+      <div class="item">
+        <img src="resources/images/abc.jpg" alt="Refrigerator" class ="center-block">
+        
+      </div>
+    
+      <div class="item">
+        <img src="resources/images/cam.jpg" alt="error" class ="center-block">
+
+    </div>
+	<div class="item">
+        <img src="resources/images/sam.jpg" alt="error" class ="center-block">
+
+    </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+<br>
+<br>
+<br>
+<br>
+
+
+<h2>EZ Mobile Shopee<br><small>Extra 10% off on Amex and Citi bank cards</small></h2>
+<table class ="table ">
+
+<c:forEach var="prod" items="${products}">
+
+
+
+<td><c:if test="${prod.category.name =='Mobile'}"><img src = "<c:url value ='/resources/images/products/${prod.id}.png'/>" height="200" width="200"/><a href="<c:url value='/viewDetails?id=${prod.id}' />" class ="btn btn-success" >View</a></c:if></td>
+
+
+</c:forEach>
+</table>
+
+<h2>Camera's ...</h2>
+<table class ="table ">
+
+<c:forEach var="prod" items="${products}">
+
+<td><c:if test="${prod.category.name =='Camera'}"><img src = "<c:url value ='/resources/images/products/${prod.id}.png'/>" height="200" width="200"/><br><a href="<c:url value='/viewDetails?id=${prod.id}' />"  class ="btn btn-success">View</a></c:if></td>
+
+
+</c:forEach>
+</table>
+
+
+<table class ="table ">
+
+<c:forEach var="prod" items="${products}">
+
+<td><c:if test="${prod.category.name =='Television'}"><img src = "<c:url value ='/resources/images/products/${prod.id}.png'/>" height="150" width="150"/><br><a href="<c:url value='/viewDetails?id=${prod.id}' />"  class ="btn btn-success">View</a></c:if></td>
+
+
+</c:forEach>
+</table>
+</div>
+
+<!-- </div>  -->
+<%-- <c:forEach var="prod" items="${products}">
+	<c:if test="${prod.category.name =='Mobile'}">
+		<div class ="row" style="padding-left: 100px;">
+		
+<div class ="col-md-3"	>
+
+<img src = "<c:url value ='/resources/images/products/${prod.id }.png'/>" height="200" width="200" style ="text-align :left"/>
+
+<br>
+</div>
+</div>
+</c:if>
+</c:forEach>
+<br>
+<c:forEach var="prod" items="${products}">
+	<c:if test="${prod.category.name =='Mobile'}">
+		<div class ="row" style="padding-left: 100px;">
+		
+<div class ="col-md-3"	>
+
+<img src = "<c:url value ='/resources/images/products/${prod.id }.png'/>" height="200" width="200" style ="text-align :left"/>
+
+<br>
+</div>
+</div>
+</c:if>
+</c:forEach> --%>
+
+
+    <%-- <%@ include file="header.jsp" %>
    	
    
   <link rel="stylesheet" type="text/css" href="style.css">
@@ -65,69 +185,26 @@ ${msg }<br>
   </div>
 <!--------------product thumbnails--------->
 <h2>EZ Mobile Shopee<br><small>Extra 10% off on Amex and Citi bank cards</small></h2>
+<c:forEach var="prod" items="${products}">
+	<c:if test="${prod.category.name =='Mobile'}">
+		<div class ="row" style="padding-left: 100px;">
 <hr class = "divider">
 <div class ="row">
 
 <div class = "col-md-2">
 <div class ="thumbnail">
-<img src = "resources/images/s6.jpg" alt="samsung" style="width:304px;height:245px">
+<img src = "<c:url value ='/resources/images/products/${prod.id }.png'/>" height="200" width="200"/>
 <div class = "caption">
-<h5>SAMSUNG Galaxy S6 Edge (White, 32 GB)</h5>
-<p> Just RS 39200</P>
-<p><a href ="#" class ="btn btn-primary" role ="button">Buy</a> <a href ="#" class ="btn btn-default" role="button">Like</a></p>
+
+<p><a href="<c:url value='/viewDetails?id=${prod.id}' />" class ="btn btn-success" >View</a></p>
 </div>
 </div>
 </div>
-<div class = "col-md-2">
-<div class ="thumbnail">
-<img src = "resources/images/i.jpg" alt="iphone" style="width:304px;height:245px">
-<div class = "caption">
-<h5>Apple iPhone 6S (Space Grey, 16 GB)</h5>
-<p> Just RS 57999</P>
-<p><a href ="#" class ="btn btn-primary" role ="button">Buy</a> <a href ="#" class ="btn btn-default" role="button">Like</a></p>
 </div>
 </div>
-</div>
-<div class = "col-md-2">
-<div class ="thumbnail">
-<img src = "resources/images/lg5.jpg" alt="LG" style="width:304px;height:245px">
-<div class = "caption">
-<h5>LG G5 Special Edition(Gold, 32 GB)</h5>
-<p> Just RS 47990</P>
-<p><a href ="#" class ="btn btn-primary" role ="button">Buy</a> <a href ="#" class ="btn btn-default" role="button">Like</a></p>
-</div>
-</div>
-</div>
-<div class = "col-md-2">
-<div class ="thumbnail">
-<img src = "resources/images/n1.jpg" alt="Nexus" style="width:304px;height:245px">
-<div class = "caption">
-<h5>Nexus 6P Special Edition (Gold, 64 GB)</h5>
-<p> Just RS 39998</P>
-<p><a href ="#" class ="btn btn-primary" role ="button">Buy</a> <a href ="#" class ="btn btn-default" role="button">Like</a></p>
-</div>
-</div>
-</div>
-<div class = "col-md-2">
-<div class ="thumbnail">
-<img src = "resources/images/motox2.jpg" alt="Nexus" style="width:304px;height:245px">
-<div class = "caption">
-<h5>Moto X Play(With Turbo Charger) (Black, 32 GB)</h5>
-<p> Just RS 17499</P>
-<p><a href ="#" class ="btn btn-primary" role ="button">Buy</a> <a href ="#" class ="btn btn-default" role="button">Like</a></p>
-</div>
-</div>
-</div>
-<div class = "col-md-2">
-<div class ="thumbnail">
-<img src = "resources/images/n.jpg" alt="Nexus" style="width:304px;height:245px">
-<div class = "caption">
-<h5>SAMSUNG Galaxy Note 4 (Charcoal Black, 32 GB)</h5>
-<p> Just RS 27949</P>
-<p><a href ="#" class ="btn btn-primary" role ="button">Buy</a> <a href ="#" class ="btn btn-default" role="button">Like</a></p>
-</div>
-</div>
-</div>
+</c:if>
+</c:forEach>
+
 <h2>EZ Electroincs Day <br><small>Extra 15% off on SBI and Citi bank cards</small></h2>
 <div class = "col-md-2">
 <div class ="thumbnail">
@@ -411,3 +488,4 @@ ${msg }<br>
 			
 			
 <%@ include file="footer.jsp" %>
+ --%>

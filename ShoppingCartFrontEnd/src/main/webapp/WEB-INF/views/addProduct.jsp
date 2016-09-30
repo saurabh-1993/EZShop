@@ -1,10 +1,19 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<head>
+  <title>Admin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+</head>
 
-<%@ include file="header.jsp" %>
+<%@ include file="adminHome.jsp" %>
 	<br><br><br><br><br><br><br><br><br><br><br><br>
 
-	<form:form action="newProduct" method="POST" commandName="product" enctype="multipart/form-data">
+	<form:form action="${pageContext.request.contextPath}/newProduct" method="POST" commandName="product" enctype="multipart/form-data">
 	
 	
 		<table>
@@ -39,7 +48,7 @@
 			</tr>
 			<tr>
 				<td></td>
-				<td><input type="submit" value="Add Product"/></td>
+				<td><input type="submit" value="Add Product" class="btn btn-success" /></td>
 			</tr>
 		</table>
 	</form:form>

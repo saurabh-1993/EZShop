@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="resources/css/style.css">
+  <link rel="stylesheet" type="text/css" href="resources/css/signup.css">
 
 
 </head>
@@ -21,7 +21,7 @@
         <div id="logbox"  >
 	<form:form action="newUserDetails" method="POST" commandName="userdetails">
 	
-	 <h1>Create an Account</h1>
+	 <h1>Sign Up</h1>
 	           <fieldset>
 	 	    	  	<div class="form-group">
 				 <input name="id" type="text" placeholder="Username" class="input pass"/>
@@ -43,10 +43,11 @@
                  	    	  	<div class="form-group">
                  <input name="password" type="password" placeholder="Choose a password" required="required" class="input pass"/>
                  </div>
-                 	    	  	<div class="form-group">
-                
-                 <input name="role" type="text" placeholder="type your role" required="required" class="input pass"/>
+                 <div class ="form-group">
+                 <input type ="file" name ="image" />
+                 
                  </div>
+                 	    	  	
                 
                 <input type="submit" value="Sign me up!" class="inputButton"/>
                           </fieldset>

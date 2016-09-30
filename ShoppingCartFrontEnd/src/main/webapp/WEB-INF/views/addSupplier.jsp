@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
-<%@ include file="header.jsp" %>
+<%@ include file="adminHome.jsp" %>
 <br>
 <br>
 <br>
@@ -27,7 +27,7 @@
 
 <div>
 
-	<form:form action="newSupplier" method="POST" commandName="supplier">
+	<form:form action="${pageContext.request.contextPath}/newSupplier" method="POST" commandName="supplier">
 	
 	
 		<table>
@@ -46,7 +46,7 @@
 	
 			<tr>
 				<td></td>
-				<td><input type="submit" value="Add Supplier"/></td>
+				<td><input type="submit" value="Add Supplier" class = "btn btn-success"/></td>
 			</tr>
 		</table>
 	</form:form>

@@ -25,29 +25,41 @@
 	
 	    
 	
+	
+	
 
 	<c:url var="action" value="/login"></c:url>
 
+
 <div class="container">
-    <div class="row vertical-offset-100">
+    
+	
         <div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
+			  		
 			    	<h3 class="panel-title">Please sign in</h3>
 			 	</div>
 			  	<div class="panel-body">
-	<form:form action="${action}" method="post" commandName="login">
+	<form:form action="perform_login" method="post" commandName="validate">
+	<c:if test ="${not empty msg }">
+	<div class ="msg">${msg}</div>
+	</c:if>
+		<c:if test ="${not empty error }">
+	<div style ="color:red" class ="error">${error}</div>
+	</c:if>
 			
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="Username" name="id" type="text">
+			    	  			    		    <input class="form-control" placeholder="Username" name="id" type="text">
 			    		</div>
 			    		<div class="form-group">
 			    			<input class="form-control" placeholder="Password" name="password" type="password" value="">
 			    		</div>
 			 
 			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
-			    	</fieldset>
+			    	<input type="hidden" name="${_csrf.parameterName }"
+							value="${_crsf.token }">			    	</fieldset>
 			      		</form:form>
 			    </div>
 			</div>

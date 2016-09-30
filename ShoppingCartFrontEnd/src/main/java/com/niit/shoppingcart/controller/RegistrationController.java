@@ -1,18 +1,27 @@
 package com.niit.shoppingcart.controller;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
+import com.niit.shoppingcart.dao.RolesDAO;
 import com.niit.shoppingcart.dao.UserDetailsDAO;
+import com.niit.shoppingcart.model.Roles;
 import com.niit.shoppingcart.model.UserDetails;
 
 @Controller
@@ -23,6 +32,10 @@ public class RegistrationController {
 	
 	@Autowired
 	UserDetails userDetails;
+	
+	@Autowired
+	RolesDAO rolesDAO;
+	 Path path ;
 	
 	Logger log = LoggerFactory.getLogger(RegistrationController.class);
 	
@@ -37,11 +50,31 @@ public class RegistrationController {
 	}
 	
 	@RequestMapping(value = "/newUserDetails",method = RequestMethod.POST)
-	public String addUser(@ModelAttribute("userDetails") UserDetails userDetails){
+	public String addUser(@ModelAttribute("userDetails") UserDetails userDetails , ModelMap model,HttpServletRequest request){
 		log.debug("Start of the method addUser");
-		userDetailsDAO.save(userDetails);
-		log.debug("End  of the method addUser ");	
 		
+		log.debug("End  of the method addUser ");	
+		Roles roles = new Roles();
+		roles.setRoles("ROLE_USER");
+		roles.setUserid(userDetails.getId());
+		
+		rolesDAO.addRoles(roles);
+		userDetailsDAO.save(userDetails);
+		model.addAttribute("user", userDetails);
+		MultipartFile image = userDetails.getImage();
+		 String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		 path = Paths.get(rootDirectory+"/resources/images/users/"+userDetails.getId()+".png");
+		 log.debug(path.toString());
+		 System.out.println(path);
+		 if(image!= null && !image.isEmpty()){
+			 try{
+				 image.transferTo(new File(path.toString()));
+			 }
+			 catch(Exception e){
+				 e.printStackTrace();
+				 
+			 }
+		 }
         return "login";
 }
 	

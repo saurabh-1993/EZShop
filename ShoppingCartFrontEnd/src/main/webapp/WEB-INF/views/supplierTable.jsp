@@ -3,7 +3,7 @@
 
 
 
-<%@ include file="header.jsp" %>
+<%@ include file="adminHome.jsp" %>
 <br>
 <br>
 <br>
@@ -13,11 +13,6 @@
 <br>
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
 
 <br>
 <br>	

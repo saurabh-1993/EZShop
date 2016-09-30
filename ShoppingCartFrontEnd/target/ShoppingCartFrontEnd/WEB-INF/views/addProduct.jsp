@@ -2,9 +2,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ include file="header.jsp" %>
-	<br><<br><br><br><br><br><br><br><br><br><br><br>
+	<br><br><br><br><br><br><br><br><br><br><br><br>
 
-	<form:form action="newProduct" method="POST" commandName="product" ecntype="multipart/form-data">
+	<form:form action="newProduct" method="POST" commandName="product" enctype="multipart/form-data">
 	
 	
 		<table>

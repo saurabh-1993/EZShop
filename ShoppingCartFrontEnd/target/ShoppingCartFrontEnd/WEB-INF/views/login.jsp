@@ -36,7 +36,7 @@
 			    	<h3 class="panel-title">Please sign in</h3>
 			 	</div>
 			  	<div class="panel-body">
-	<form:form action="${action}" method="post" commandName="login">
+	<form:form action="perform_login" method="post" commandName="login">
 			
                     <fieldset>
 			    	  	<div class="form-group">

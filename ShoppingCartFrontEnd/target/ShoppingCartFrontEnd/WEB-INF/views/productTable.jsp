@@ -3,7 +3,7 @@
 
 
 <%@ include file="header.jsp" %>
-<br><<br><br><br><br><br>
+<br><br><br><br><br><br>
 
 
 <div class ="container">
@@ -13,6 +13,7 @@
 <th>Product Name</th>
 <th>Product Description</th>
 <th>Product Price</th>
+<th>Product Image</th>
 <th>Category</th>
 <th>Supplier</th>
 </tr>
@@ -22,6 +23,7 @@
 <td>${product.name}</td>
 <td>${product.description}</td>
 <td>${product.price}</td>
+<td><img src = "<c:url value ='/resources/images/products/${product.id }.png'/>" height="50" width="50"/>
 <td>${product.category.name}</td>
 <td>${product.supplier.name}</td>
 <td align="center"><a href="/editProduct?id=${product.id}"class ="btn btn-primary">Edit</a> | <a href="deleteProduct?id=${product.id}" class ="btn btn-warning">Delete</a></td>
